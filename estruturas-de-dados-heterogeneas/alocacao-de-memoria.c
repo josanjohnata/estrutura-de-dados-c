@@ -1,55 +1,58 @@
-// Ponteiros e memória
+// Alocação de Memória
 
-// Ponteiros são variáveis que armazenam endereços de memória, permitindo um acesso mais eficiente e 
-// flexível aos dados. Em C, a memória do programa é organizada em segmentos como Text, Data, Stack e 
-// Heap, cada um com funções específicas. A alocação de memória pode ser estática, automática ou 
-// dinâmica, sendo essencial para a gestão eficiente de recursos. A utilização de ponteiros, structs e 
-// arrays de structs possibilita a manipulação de estruturas de dados heterogêneas.
+// É um conceito fundamental na programação em C, importante para a gestão eficiente dos recursos. 
+// Existem três formas principais de alocação: estática, automática e dinâmica.
 
-// A organização da MEMÓRIA é fundamental para o bom desempenho do software, pois cada tipo de dado precisa 
-// ser armazenado e acessado de forma otimizada.
+// A alocação estática, usando o modificador static, mantém o valor das variáveis durante toda a 
+// execução do programa. A alocação automática ocorre quando variáveis locais são criadas e liberadas 
+// dentro do escopo de funções. A alocação dinâmica, por meio das funções malloc, free e realloc, 
+// permite a criação e o gerenciamento flexível de memória durante a execução do programa – essencial 
+// para o desenvolvimento de aplicações complexas e eficientes.
 
-// Tipos de memórias
-// - RAM: Random Access Memory
-// - HD ou SSD: Hard Disk ou Solid State Drive
-// - Cache
-// - Memória Virtual
-// - ROM: Read-Only Memory
+// Tipos de Alocação:
+// - Automática
+// - Estática
+// - Dinâmica
 
-// Regiões manipuláveis da memória em liguagem C
-// - Stack (pilha) - onde é armazenado as variáveis lacoais e os parâmetros das funções
-// - Heap (Área de Alocação Dinâmica) - Area de armazenamento enquanto o programa está em execução
-// - Data Segment (Segmento de Dados) - onde as variáveis Globais e Estaticas são armazenadas
-// - Code Segment (Segmento de Código) - as estruções que o programa deve executar
-
-// Ponteiro
-// - O ponteiro é uma variável que armazena o endereço de outra variável
-// Ex.:
+// Alocação automática
 #include <stdio.h>
 
-int main() {
-  int numero = 10; // Variável normal
-  int *ponteiro; // Declaração do ponteiro
-  // O ponteiro armazena o endereço da variável 'numero''
-  ponteiro = &numero;
+void funcaoExemplo() {
+  int numero = 10; // Variável automática
   printf("Valor de numero: %d\n", numero);
-  printf("Endereço de numero: %p\n", ponteiro);
-  printf("Valor apontado por numero: %d\n", *ponteiro);
+}
+
+int main() {
+  funcaoExemplo(); // Chamada da função
   return 0;
 }
 
-// Utilidades do ponteiro
-// - Acessar e Manipular Memória Dinamicamente
-// - Passagem de Parâmetros por Referência
-// - Otimização de Performance
+// Alocação estática
+#include <stdio.h>
 
-// O endereço de memória de um processo em execução é dividido em vários segmentos lógicos. Destacamos 
-// alguns dos mais importantes a seguir.
-// - Text: Contém o código do programa e suas constantes. Esse segmento é alocado durante a criação do 
-//   processo (''exec'') e permanece do mesmo tamanho durante toda a vida do processo.
-// - Data: É a memória de trabalho do processo, na qual ficam alocadas as variáveis globais e estáticas. 
-//   Tem tamanho fixo ao longo da execução do processo.
-// - Stack: Contém a pilha de execução, na qual são armazenados os parâmetros, os endereços de retorno e 
-//   as variáveis locais de funções. Pode variar de tamanho durante a execução do processo.
-// - Heap: Contém blocos de memória alocadas dinamicamente, a pedido do processo, durante sua execução. 
-//   Varia de tamanho durante a vida do processo.
+int valorGlobal = 20; // Variável estática
+void exibirValor() {
+  printf("Valor Global: %d\n", valorGlobal);
+}
+
+int main() {
+  exibirValor(); // Chamada da função para exibir o valor global
+  return 0;
+}
+
+// Alocação dinâmica
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+int *ponteiro;
+ponteiro = (int*)malloc(sizeof(int));
+if(ponteiro != NULL) {
+  *ponteiro = 30;
+  printf("Valor alocado dinamicamente: %d\n", *ponteiro);
+  free(ponteiro); // Libera a memória
+} else {
+  printf("Erro na alocação de memória.\n");
+}
+  return 0;
+}

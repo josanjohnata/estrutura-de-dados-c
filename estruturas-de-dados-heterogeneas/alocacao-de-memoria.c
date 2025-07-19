@@ -56,3 +56,20 @@ if(ponteiro != NULL) {
 }
   return 0;
 }
+
+// Função malloc - Memory Allocation
+// É usada para alocar um bloco de memória contido em bytes
+void* malloc(size_t size); // ela não inicializa os valores
+// Onde size é o número de bytes que queremos alocar
+
+// Função calloc - Contiguous Allocation
+// Ela também é usada para alocar um bloco de memória contido em bytes, mas ela recebe dois argumentos,
+// o número de elementos e o tamanho de cada elemento
+void* calloc(size_t num_elements, size_t size_of_each_element); // ela inicializa todos os valores com 0, assim garantindo que todos os valores comecem com 0
+// Onde num_elements é o número de elementos a serem alocados e size_of_each_element é o tamanho de bytes de cada elemento.
+
+// Função free
+// Ela a usada para liberar a memória que foi alocada dinâmicamente pela função malloc e calloc
+void free(void* ptr); // Após o usa da memória sempre devemos liberar esse espaço com a função free para que esse espaço fique disponível e evite vazamento de memória
+// Onde ptr é o ponteiro para o bloco de memória a ser liberado.
+
